@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fabmaster Maintenance Program</title>
-<meta name="description" content="Scheduled preventive maintenance for grain, feed & fertilizer operations — tagged assets, documented inspections, and repairs before failure. Fabmaster Welding, Ridgetown, Ontario.">
+<meta name="description" content="Concept pitch: a subscription preventive-maintenance program for Fabmaster Welding — tagged assets, scheduled inspections, a customer portal, and recurring monthly revenue for grain, feed & fertilizer operations.">
 <meta name="theme-color" content="#14181D">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fabmaster Welding">
 <meta property="og:title" content="Fabmaster Maintenance Program">
-<meta property="og:description" content="Fix it before harvest finds it first. Scheduled inspections, tagged assets, and a customer portal for grain, feed & fertilizer operations.">
+<meta property="og:description" content="Tagged assets, scheduled inspections, a customer portal — and recurring monthly revenue. A program concept for Fabmaster Welding.">
 <meta property="og:url" content="https://brendangiffordbg-eng.github.io/fabmaster-demo/">
 <meta property="og:image" content="https://brendangiffordbg-eng.github.io/fabmaster-demo/images/home-millwright.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -45,42 +45,136 @@
   </div>
 </header>
 
+<section id="problem">
+  <div class="wrap">
+    <div class="tagline"><span class="tag-card">FM-PROB &middot; The problem</span></div>
+    <h2>Right now, the phone only rings after something breaks.</h2>
+    <p class="sub">Every grain and feed operation in the county runs the same play — and it costs them, and Fabmaster, every single season.</p>
+    <div class="pains">
+      <div class="pain">
+        <b>Breakdowns pick the worst week</b>
+        <p>Equipment fails during harvest and blend season — exactly when it's running hardest and downtime costs the most.</p>
+      </div>
+      <div class="pain">
+        <b>The call comes after the failure</b>
+        <p>Customers ring when the leg is already down and trucks are lining up — not when the bearing first started humming.</p>
+      </div>
+      <div class="pain">
+        <b>Notes live everywhere and nowhere</b>
+        <p>Inspection history is scattered across notepads, texts and memory. Nobody can prove what was checked, or when.</p>
+      </div>
+      <div class="pain">
+        <b>Small issues become emergency welds</b>
+        <p>A $200 guard fix ignored in June turns into a 2 a.m. emergency fabrication job in September.</p>
+      </div>
+      <div class="pain kicker">
+        <span class="mono">THE REAL PROBLEM</span>
+        <b>Fabmaster only gets paid when something breaks</b>
+        <p>Revenue arrives in unpredictable spikes, tied to other people's worst days.</p>
+      </div>
+      <div class="pain turn">
+        <span class="mono">THE OPPORTUNITY</span>
+        <b>Sell the inspection, not just the repair</b>
+        <p>A monthly program turns breakdown season into a scheduled, documented, subscription business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="tagged">
+  <div class="wrap">
+    <div class="tagline"><span class="tag-card">FM-TAG &middot; The system</span></div>
+    <h2>Every asset gets tagged.</h2>
+    <p class="sub">The tag is the product. One numbered ID on every leg, conveyor, ladder and guard — tied to its full inspection history in the portal.</p>
+    <div class="tag-wrap">
+      <div class="bigtag">
+        <div class="bt-head">Fabmaster Maintenance Program</div>
+        <div class="bt-grid">
+          <div class="bt-fields">
+            <div class="bt-field"><span class="lbl">Asset ID</span><span class="val">FM-0417</span></div>
+            <div class="bt-field"><span class="lbl">Location</span><span class="val">Receiving pit &middot; Leg #1</span></div>
+            <div class="bt-field"><span class="lbl">Last inspection</span><span class="val">Mar 14, 2026</span></div>
+            <div class="bt-field"><span class="lbl">Status</span><span class="pill ok">Compliant</span></div>
+          </div>
+          <div class="bt-qr" role="img" aria-label="QR code placeholder linking to this asset's inspection history">
+            <svg viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+              <rect width="25" height="25" fill="#fff"/>
+              <g fill="#14181D">
+                <path d="M1 1h7v7H1zM17 1h7v7h-7zM1 17h7v7H1z" fill="none" stroke="#14181D" stroke-width="1.6"/>
+                <rect x="3" y="3" width="3" height="3"/><rect x="19" y="3" width="3" height="3"/><rect x="3" y="19" width="3" height="3"/>
+                <rect x="10" y="2" width="2" height="2"/><rect x="13" y="4" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/>
+                <rect x="2" y="10" width="2" height="2"/><rect x="6" y="12" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/>
+                <rect x="10" y="10" width="3" height="3"/><rect x="14" y="12" width="2" height="2"/><rect x="12" y="14" width="2" height="2"/>
+                <rect x="17" y="10" width="2" height="2"/><rect x="20" y="12" width="2" height="2"/><rect x="22" y="15" width="2" height="2"/>
+                <rect x="10" y="17" width="2" height="2"/><rect x="13" y="19" width="2" height="2"/><rect x="10" y="21" width="3" height="2"/>
+                <rect x="17" y="17" width="2" height="2"/><rect x="20" y="19" width="2" height="2"/><rect x="17" y="21" width="2" height="2"/><rect x="21" y="22" width="2" height="2"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="bt-foot mono">SCAN FOR FULL ASSET HISTORY</div>
+      </div>
+      <ul class="checklist">
+        <li><span class="box"></span><div><b>One ID per asset</b><span>No more "the east conveyor, I think" — every unit has a number, a baseline photo and a file.</span></div></li>
+        <li><span class="box"></span><div><b>The QR opens its history</b><span>Scan the tag on the catwalk and see every inspection, finding and repair on that unit.</span></div></li>
+        <li><span class="box"></span><div><b>Status at a glance</b><span>Compliant, watch, PMI due, or action needed — the customer, the crew and the insurer all see the same answer.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section id="how">
   <div class="wrap">
     <div class="tagline"><span class="tag-card">FM-INSP &middot; How it works</span></div>
-    <h2>Four steps. Zero surprises.</h2>
-    <p class="sub">Every piece of equipment on your site gets an asset tag, a schedule, and a paper trail. Downtime stops being a mystery.</p>
+    <h2>Six steps. Zero surprises.</h2>
+    <p class="sub">Every piece of equipment on a customer's site gets a tag, a schedule, and a paper trail — and the cycle repeats every month the customer stays enrolled.</p>
     <div class="steps">
       <div class="step">
         <img src="images/home-1.jpg" alt="Grain handling equipment on site">
         <div class="body">
           <span class="num mono">STEP 01</span>
-          <h3>Tag every asset</h3>
-          <p>Each leg, conveyor, auger and platform gets a numbered Fabmaster asset tag and a documented baseline condition.</p>
+          <h3>Tag equipment</h3>
+          <p>Every leg, conveyor, ladder and guard gets a numbered Fabmaster tag and a documented baseline condition.</p>
         </div>
       </div>
       <div class="step">
         <img src="images/home-2.jpg" alt="Millwright inspection work">
         <div class="body">
           <span class="num mono">STEP 02</span>
-          <h3>Inspect on schedule</h3>
-          <p>Our certified crew runs your PMIs on a set cycle — safety, structure, wear parts, and vibration analysis where it counts.</p>
+          <h3>Inspect assets</h3>
+          <p>Scheduled PMIs cover safety, structure, wear parts and vibration — nobody waits for a breakdown.</p>
         </div>
       </div>
       <div class="step">
         <img src="images/home-3.jpg" alt="Equipment condition documentation">
         <div class="body">
           <span class="num mono">STEP 03</span>
-          <h3>Get the report</h3>
-          <p>Photos, findings, and plain-language recommendations land in your customer portal — every inspection, every asset, forever.</p>
+          <h3>Upload notes &amp; photos</h3>
+          <p>Findings go into the system on site — photos, measurements, and the millwright's notes, per asset.</p>
         </div>
       </div>
       <div class="step">
         <img src="images/home-4.jpg" alt="Fabmaster repair work">
         <div class="body">
           <span class="num mono">STEP 04</span>
-          <h3>Repair before failure</h3>
-          <p>Issues get quoted and fixed on your schedule — in the off-season, not mid-harvest with a line of trucks waiting.</p>
+          <h3>Send the customer report</h3>
+          <p>A plain-language report lands in the portal: what's fine, what's wearing, and what can't wait.</p>
+        </div>
+      </div>
+      <div class="step">
+        <img src="images/services-4.jpg" alt="Fabricated repair in the Fabmaster shop">
+        <div class="body">
+          <span class="num mono">STEP 05</span>
+          <h3>Schedule repair work</h3>
+          <p>Findings become quotes, and quotes become booked off-season work — not mid-harvest emergencies.</p>
+        </div>
+      </div>
+      <div class="step">
+        <img src="images/home-6.jpg" alt="Grain elevator site at working height">
+        <div class="body">
+          <span class="num mono">STEP 06</span>
+          <h3>Keep customers enrolled</h3>
+          <p>The monthly program keeps assets on cycle — and keeps Fabmaster on site all year, not just in emergencies.</p>
         </div>
       </div>
     </div>
@@ -111,99 +205,252 @@
 
 <section id="portal">
   <div class="wrap">
-    <div class="tagline"><span class="tag-card">FM-PORTAL &middot; Your records</span></div>
-    <h2>Your equipment file, one login away.</h2>
-    <p class="sub">No more digging for last year's inspection paperwork. Every tagged asset, every report, every recommendation — electronic, searchable, and printable when you need paper.</p>
+    <div class="tagline"><span class="tag-card">FM-PORTAL &middot; Customer portal preview</span></div>
+    <h2>Every inspection, one login away.</h2>
+    <p class="sub">No more digging for last year's paperwork. Every tagged asset, its status, and the recommended next move — electronic, searchable, and printable when the insurer asks.</p>
 
-    <div class="portal" role="img" aria-label="Preview of the Fabmaster customer portal showing asset list and inspection statuses">
+    <div class="portal">
       <div class="portal-top">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="mono">portal.fabmaster.ca — Maple Creek Grain Ltd.</span>
+        <span class="mono">portal.fabmaster.ca — Sandy Ridge Feed &amp; Fertilizer</span>
       </div>
       <div class="portal-grid">
-        <nav class="portal-nav" aria-label="Portal sections">
-          <a class="on" href="#portal">My Assets</a>
-          <a href="#portal">Inspection Reports</a>
-          <a href="#portal">Upcoming PMIs</a>
-          <a href="#portal">Recommendations</a>
-          <a href="#portal">Documents</a>
-        </nav>
+        <div class="portal-nav" aria-hidden="true">
+          <span class="on">My Assets</span>
+          <span>Inspection Reports</span>
+          <span>Upcoming PMIs</span>
+          <span>Recommendations</span>
+          <span>Documents</span>
+        </div>
         <div class="portal-main">
-          <h3>My Assets</h3>
-          <span class="mono">SITE: MAIN ELEVATOR &middot; 12 TAGGED ASSETS</span>
+          <h3>Asset Dashboard</h3>
+          <span class="mono">SITE: SANDY RIDGE &middot; 18 TAGGED ASSETS &middot; SHOWING 5</span>
 
-          <div class="asset-row">
-            <span class="asset-id">FM-0417</span>
-            <div><b>Receiving Leg #1</b><small>Last PMI: Mar 14, 2026 &middot; Vibration: normal</small></div>
-            <span class="pill ok">Compliant</span>
-            <a class="pdf-link" href="#portal">Report PDF</a>
+          <div class="dash">
+            <div class="dash-head">
+              <span>Tag</span><span>Asset</span><span>Last inspection</span><span>Status</span><span>Recommended action</span>
+            </div>
+            <div class="dash-row">
+              <span class="asset-id">FM-0301</span>
+              <span><b>Grain Leg #1</b><small>Receiving &middot; 60' bucket elevator</small></span>
+              <span class="last">Jun 12, 2026</span>
+              <span class="pill ok">Compliant</span>
+              <span class="act">None — vibration normal, next PMI Oct 2026</span>
+            </div>
+            <div class="dash-row">
+              <span class="asset-id">FM-0304</span>
+              <span><b>Belt Conveyor — Overhead</b><small>Bin yard gallery</small></span>
+              <span class="last">Jun 12, 2026</span>
+              <span class="pill due">Watch</span>
+              <span class="act">Belt splice wearing — re-check at fall PMI</span>
+            </div>
+            <div class="dash-row">
+              <span class="asset-id">FM-0309</span>
+              <span><b>Bin Ladder &amp; Cage — Tower 1</b><small>Access &middot; structure</small></span>
+              <span class="last">Jun 12, 2026</span>
+              <span class="pill overdue">Action needed</span>
+              <span class="act hot">Cage bent at third hoop — replace section before winter fill</span>
+            </div>
+            <div class="dash-row">
+              <span class="asset-id">FM-0312</span>
+              <span><b>Auger Guard — Receiving Pit</b><small>Machine guarding</small></span>
+              <span class="last">Jun 12, 2026</span>
+              <span class="pill overdue">Action needed</span>
+              <span class="act hot">Guard cracked — new guard quoted, awaiting approval</span>
+            </div>
+            <div class="dash-row">
+              <span class="asset-id">FM-0316</span>
+              <span><b>Fertilizer Drag Conveyor</b><small>Blend shed</small></span>
+              <span class="last">Apr 28, 2026</span>
+              <span class="pill due">PMI due</span>
+              <span class="act">Chain tension check before next blend season</span>
+            </div>
           </div>
-          <div class="asset-row">
-            <span class="asset-id">FM-0418</span>
-            <div><b>Drag Conveyor — East</b><small>Last PMI: Mar 14, 2026 &middot; Chain wear at 60%</small></div>
-            <span class="pill due">PMI due Aug 2026</span>
-            <a class="pdf-link" href="#portal">Report PDF</a>
-          </div>
-          <div class="asset-row">
-            <span class="asset-id">FM-0421</span>
-            <div><b>Catwalk &amp; Fall Arrest — Tower B</b><small>Last PMI: Oct 3, 2025 &middot; Anchor recert required</small></div>
-            <span class="pill overdue">Action needed</span>
-            <a class="pdf-link" href="#portal">Report PDF</a>
-          </div>
-
-          <p class="note">Recommendation open on FM-0421: replace two tie-off anchors before fall harvest. Quote #1187 attached.</p>
         </div>
       </div>
     </div>
 
     <p class="portal-cta">
       <a class="btn btn-orange" href="portal/index.html">Open the interactive portal demo</a>
-      <span class="mono">Sample data &middot; Maple Creek Grain Ltd.</span>
+      <span class="mono">Interactive demo signs in as Maple Creek Grain Ltd. &middot; Sample data</span>
     </p>
+  </div>
+</section>
+
+<section class="dark" id="report">
+  <div class="wrap">
+    <div class="tagline"><span class="tag-card">FM-RPT &middot; The paper trail</span></div>
+    <h2>The report does the selling.</h2>
+    <p class="sub">Every visit ends with a short, photo-backed report in plain language — what passed, what's wearing, and what it costs to fix before it fails. Findings become quotes; quotes become booked shop work.</p>
+    <div class="report-wrap">
+      <ul class="checklist">
+        <li><span class="box"></span><div><b>Plain language</b><span>Written for the person who owns the elevator, not for another millwright.</span></div></li>
+        <li><span class="box"></span><div><b>Findings ranked</b><span>Fixed on site, monitor, or action needed — with the quote already attached.</span></div></li>
+        <li><span class="box"></span><div><b>On file forever</b><span>Every report lives in the portal, ready for insurers, auditors and the Ministry.</span></div></li>
+      </ul>
+      <div class="sheet" role="img" aria-label="Sample preventive maintenance inspection report styled as a printed document">
+        <span class="stamp mono">SAMPLE</span>
+        <div class="sheet-head">
+          <img src="images/Fabmaster-Logo-New.jpg" alt="Fabmaster Welding">
+          <span class="mono">RPT-2026-031<br>Mar 14, 2026</span>
+        </div>
+        <h3>Preventive Maintenance Inspection Report</h3>
+        <div class="sh-meta mono">
+          <span>CUSTOMER: Maple Creek Grain Ltd.</span>
+          <span>SITE: Main Elevator</span>
+          <span>ASSETS INSPECTED: 11</span>
+          <span>FINDINGS: 7 (3 corrected on site) &middot; SHOWING 4</span>
+        </div>
+        <table>
+          <thead>
+            <tr><th scope="col">Finding</th><th scope="col">Asset</th><th scope="col">Action</th><th scope="col">Severity</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Belt tracking off-centre</td><td class="mono">FM-0419</td><td>Corrected on site</td><td><span class="pill ok">Fixed</span></td></tr>
+            <tr><td>Drag chain wear at 60%</td><td class="mono">FM-0418</td><td>Replace post-harvest &middot; Quote #1204</td><td><span class="pill due">Medium</span></td></tr>
+            <tr><td>Hanger bearing worn</td><td class="mono">FM-0424</td><td>Replaced on site</td><td><span class="pill ok">Fixed</span></td></tr>
+            <tr><td>Head pulley lagging at 40%</td><td class="mono">FM-0422</td><td>Monitor — re-check at next PMI</td><td><span class="pill low">Low</span></td></tr>
+          </tbody>
+        </table>
+        <p class="sh-summary">Overall: site is in good shape heading into the season. One planned repair (drag chain) is booked for the post-harvest window; Tower B anchor replacement (Quote #1187) remains awaiting approval.</p>
+        <div class="sig">
+          <span>Inspected by: <b>Fabmaster millwright crew</b></span>
+          <span class="mono">NEXT PMI: AUG 18, 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="versus">
+  <div class="wrap">
+    <div class="tagline"><span class="tag-card">FM-DIFF &middot; Before &amp; after</span></div>
+    <h2>Same equipment. Different season.</h2>
+    <p class="sub">What actually changes for the customer — and for Fabmaster — when maintenance goes on the program.</p>
+    <div class="versus-wrap">
+      <table class="versus">
+        <thead>
+          <tr>
+            <th class="v-no-h" scope="col">Without the program</th>
+            <th class="v-yes-h" scope="col">With the Fabmaster Maintenance Program</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="v-no">Equipment fails mid-harvest with trucks lined up</td>
+            <td class="v-yes">Wear caught at scheduled inspections, fixed in the off-season</td>
+          </tr>
+          <tr>
+            <td class="v-no">Emergency call-out rates, overtime and rush parts</td>
+            <td class="v-yes">Planned repairs at quoted prices, on the customer's schedule</td>
+          </tr>
+          <tr>
+            <td class="v-no">Inspection notes on scraps of paper — if anywhere</td>
+            <td class="v-yes">Every asset tagged, every finding and photo in the portal</td>
+          </tr>
+          <tr>
+            <td class="v-no">Insurance and Ministry questions answered from memory</td>
+            <td class="v-yes">Documented compliance, in writing, per asset</td>
+          </tr>
+          <tr>
+            <td class="v-no">Fabmaster hears from customers only when something breaks</td>
+            <td class="v-yes">Monthly program revenue and year-round customer contact</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
 <section class="dark" id="pricing" style="padding-top:70px;">
   <div class="wrap">
     <div class="tagline"><span class="tag-card">FM-PRICE &middot; Packages</span></div>
-    <h2>Pick your inspection cycle.</h2>
-    <p class="sub">Pricing scales with your site — number of assets, height work, and vibration coverage. Every tier includes asset tagging, the customer portal, and written reports.</p>
+    <h2>Three plans. One program.</h2>
+    <p class="sub">The program fee covers inspections, documentation and the portal. Repair work is quoted separately from the findings — no surprises on the invoice.</p>
     <div class="tiers">
       <div class="tier">
-        <h3>Seasonal</h3>
-        <span class="freq">1 PMI / year &middot; Pre-harvest</span>
+        <h3>Starter Inspection Plan</h3>
+        <span class="price">$249<span>/month</span></span>
+        <span class="freq">Small sites getting started</span>
         <ul>
-          <li>Full safety compliance inspection</li>
-          <li>Asset tagging &amp; baseline documentation</li>
-          <li>Written report with recommendations</li>
+          <li>Up to 8 tagged assets</li>
+          <li>One full PMI per year, pre-harvest, plus a mid-winter walk-through</li>
+          <li>Written report with photos after every visit</li>
           <li>Customer portal access</li>
+          <li>Repairs quoted straight from the findings</li>
         </ul>
         <a class="btn alt" href="#quote">Request a quote</a>
       </div>
       <div class="tier feature">
         <span class="flag">Most operations</span>
-        <h3>Semi-Annual</h3>
-        <span class="freq">2 PMIs / year &middot; Spring + Fall</span>
+        <h3>Pro Maintenance Plan</h3>
+        <span class="price">$499<span>/month</span></span>
+        <span class="freq">Spring + fall PMIs &middot; Up to 25 assets</span>
         <ul>
-          <li>Everything in Seasonal</li>
+          <li>Everything in Starter</li>
+          <li>Spring and fall inspections</li>
           <li>Vibration analysis on critical drives</li>
-          <li>Wear-part tracking &amp; PM scheduling</li>
-          <li>Priority booking for repairs</li>
+          <li>Annual fall-arrest &amp; anchor recertification</li>
+          <li>Priority booking for repair work</li>
         </ul>
         <a class="btn btn-orange" href="#quote">Request a quote</a>
       </div>
       <div class="tier">
-        <h3>Full Program</h3>
-        <span class="freq">Quarterly PMIs &middot; Year-round</span>
+        <h3>Industrial Partner Plan</h3>
+        <span class="price">Custom<span> &middot; from $899/month</span></span>
+        <span class="freq">Multi-site &middot; year-round coverage</span>
         <ul>
-          <li>Everything in Semi-Annual</li>
-          <li>Quarterly vibration trending</li>
-          <li>Annual fall-arrest &amp; anchor recertification</li>
-          <li>Emergency response priority</li>
+          <li>Everything in Pro</li>
+          <li>Multiple sites, unlimited tagged assets</li>
+          <li>Quarterly PMIs plus monthly walk-throughs</li>
+          <li>24/7 emergency response priority</li>
+          <li>Annual maintenance budget &amp; capital forecast</li>
+          <li>Custom reporting for insurers &amp; corporate</li>
         </ul>
         <a class="btn alt" href="#quote">Request a quote</a>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="revenue">
+  <div class="wrap">
+    <div class="tagline"><span class="tag-card">FM-REV &middot; The business case</span></div>
+    <h2>Inspection revenue, twelve months a year.</h2>
+    <p class="sub">The program fee is the floor, not the ceiling — every repair the inspections uncover is quoted on top, and it lands in Fabmaster's shop.</p>
+    <div class="table-scroll">
+      <table class="rev-table">
+        <thead>
+          <tr>
+            <th scope="col">Program size</th>
+            <th scope="col">Avg. fee per customer</th>
+            <th scope="col">Monthly revenue</th>
+            <th scope="col">Annual revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="num">10</span> customers</td>
+            <td>$299/month</td>
+            <td><span class="num">$2,990</span>/mo</td>
+            <td class="annual"><span class="num">$35,880</span>/yr</td>
+          </tr>
+          <tr>
+            <td><span class="num">25</span> customers</td>
+            <td>$399/month</td>
+            <td><span class="num">$9,975</span>/mo</td>
+            <td class="annual"><span class="num">$119,700</span>/yr</td>
+          </tr>
+          <tr>
+            <td><span class="num">50</span> customers</td>
+            <td>$499/month</td>
+            <td><span class="num">$24,950</span>/mo</td>
+            <td class="annual"><span class="num">$299,400</span>/yr</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rev-note">Average fee rises with plan mix as larger sites join. Figures are program fees only — repair and fabrication work generated by the inspections is quoted and billed on top.</p>
   </div>
 </section>
 
@@ -216,6 +463,16 @@
   <img src="images/services-15.jpg" alt="">
 </div>
 
+<section class="closer" id="closer">
+  <div class="wrap">
+    <div class="tagline"><span class="tag-card">FM-GO &middot; The ask</span></div>
+    <h2>Ryan, this could become Fabmaster's recurring maintenance division.</h2>
+    <p>The crew, the reputation and the customer list already exist. The program turns them into monthly revenue — and books the shop solid in the off-season. Walk through the concept and see if it fits.</p>
+    <a class="btn btn-char" href="#problem">Review the Program Concept</a>
+    <a class="btn btn-ghost" href="portal/index.html">Open the portal demo</a>
+  </div>
+</section>
+
 <footer id="quote">
   <div class="wrap">
     <div class="foot-grid">
@@ -225,7 +482,7 @@
       </div>
       <div>
         <h3>Start your program</h3>
-        <p class="ryan-line">Call or text Ryan — <a href="tel:5194375297">519.437.5297</a></p>
+        <p class="ryan-line">Customers call or text Ryan — <a href="tel:5194375297">519.437.5297</a></p>
         <p style="margin-top:10px;"><a href="tel:5196745343">Shop: 519.674.5343</a><br><a href="mailto:admin@fabmaster.ca">admin@fabmaster.ca</a></p>
       </div>
       <div>
@@ -235,7 +492,7 @@
     </div>
     <div class="fine">
       <span>&copy; 2026 Fabmaster Welding. All rights reserved.</span>
-      <span class="mono">MAINTENANCE PROGRAM &middot; CONCEPT V2 &middot; PREPARED FOR RYAN</span>
+      <span class="mono">MAINTENANCE PROGRAM &middot; CONCEPT V3 &middot; PREPARED FOR RYAN</span>
     </div>
   </div>
 </footer>

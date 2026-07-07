@@ -8,7 +8,7 @@ const PORTAL = {
   customer: {
     name: 'Maple Creek Grain Ltd.',
     site: 'Main Elevator',
-    program: 'Semi-Annual Program',
+    program: 'Pro Maintenance Plan',
     memberSince: 'October 2024',
     rep: 'Ryan — 519.437.5297',
   },
@@ -40,7 +40,7 @@ const PORTAL = {
     { when: 'Aug 18, 2026', title: 'Semi-Annual PMI — pre-harvest', assets: 'all', status: 'confirmed', detail: 'Full inspection of all 12 tagged assets, including vibration analysis on critical drives. Crew on site approx. two days.' },
     { when: 'Sep 2, 2026', title: 'Dryer pre-season service', assets: ['FM-0425'], status: 'proposed', detail: 'Burner, fans and safety-circuit service before the fall drying season. Proposed date — confirm with Ryan.' },
     { when: 'Nov 2026', title: 'Drag chain replacement — East conveyor', assets: ['FM-0418'], status: 'planned', detail: 'Chain and sprocket replacement scheduled for the post-harvest window, per quote #1204.' },
-    { when: 'Mar 2027', title: 'Semi-Annual PMI — spring', assets: 'all', status: 'tentative', detail: 'Spring cycle of the Semi-Annual Program. Date confirmed in February.' },
+    { when: 'Mar 2027', title: 'Semi-Annual PMI — spring', assets: 'all', status: 'tentative', detail: 'Spring cycle of the Pro Maintenance Plan. Date confirmed in February.' },
   ],
 
   recommendations: [
@@ -59,7 +59,7 @@ const PORTAL = {
     { name: 'Asset Register (spreadsheet)', category: 'Program records', date: '2026-03-14', type: 'CSV', size: '18 KB' },
     { name: 'Fall-Arrest Anchor Certificates — Tower A', category: 'Certificates', date: '2025-10-03', type: 'PDF', size: '1.1 MB' },
     { name: 'Quote #1187 — Tower B anchor replacement', category: 'Quotes', date: '2025-10-10', type: 'PDF', size: '310 KB' },
-    { name: 'Quote #1204 — East drag chain replacement', category: 'Quotes', date: '2026-03-20', type: 'PDF', size: '290 KB' },
+    { name: 'Quote #1204 — East drag chain replacement', category: 'Quotes', date: '2026-03-14', type: 'PDF', size: '290 KB' },
     { name: 'Certificate of Insurance — Fabmaster Welding', category: 'Compliance', date: '2026-01-05', type: 'PDF', size: '220 KB' },
     { name: 'CWB Certification — Fabmaster Welding', category: 'Compliance', date: '2025-11-30', type: 'PDF', size: '180 KB' },
   ],
