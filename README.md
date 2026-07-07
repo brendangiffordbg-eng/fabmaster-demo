@@ -1,27 +1,43 @@
 # Fabmaster Maintenance Program — Demo Site
 
 Single-page concept site pitching a preventive-maintenance subscription program for
-grain, feed & fertilizer operations. Prepared for Ryan at
-[Fabmaster Welding](https://fabmaster.ca) (Ridgetown, Ontario).
+grain, feed & fertilizer operations, plus an interactive customer-portal demo.
+Prepared for Ryan at [Fabmaster Welding](https://fabmaster.ca) (Ridgetown, Ontario).
 
 ## Structure
 
 ```
-index.html      — the page (static, no JavaScript)
-css/styles.css  — all styling
+index.html      — the pitch page (static, no JavaScript)
+css/styles.css  — pitch-page styling
 images/         — local copies of photography from fabmaster.ca
 favicon.svg     — inspection-tag favicon
+portal/         — interactive customer-portal demo (vanilla JS, sample data)
 ```
+
+## Customer portal demo
+
+`portal/index.html` is a mock sign-in (any credentials work) that opens a sample
+account for "Maple Creek Grain Ltd." with five sections:
+
+- **My Assets** — 12 tagged assets with status filters and expandable detail
+- **Inspection Reports** — PMI report history
+- **Upcoming PMIs** — schedule and overdue work
+- **Recommendations** — open quotes and monitoring items
+- **Documents** — reports, certificates, quotes and compliance files
+
+Everything is client-side; the dataset lives in `portal/data.js`. Downloads and
+approvals are stubbed with a "concept only" notice.
 
 ## Preview locally
 
-Any static file server works, e.g.:
+Any static file server that serves `.html` files as-is works, e.g.:
 
 ```
-npx serve .
+npx http-server .
 ```
 
-then open the printed localhost URL.
+then open the printed localhost URL. (Avoid `npx serve` — its default
+"clean URLs" mode strips `.html` and breaks the portal's relative links.)
 
 ## Notes
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspection Reports — Fabmaster Customer Portal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portal.css">
+</head>
+<body>
+<header class="p-top">
+  <div class="p-brand"><img src="../images/Fabmaster-Logo-New.jpg" alt="Fabmaster Welding"><span class="mono">portal.fabmaster.ca</span></div>
+  <div class="p-user"><span class="p-cust">Maple Creek Grain Ltd.</span><a class="p-signout" href="index.html">Sign out</a></div>
+</header>
+<div class="p-shell">
+  <nav class="p-nav" aria-label="Portal sections">
+    <a href="assets.html">My Assets</a>
+    <a class="on" href="reports.html">Inspection Reports</a>
+    <a href="schedule.html">Upcoming PMIs</a>
+    <a href="recommendations.html">Recommendations</a>
+    <a href="documents.html">Documents</a>
+    <a class="p-back" href="../index.html">&larr; Program page</a>
+  </nav>
+  <main class="p-main">
+    <h1>Inspection Reports</h1>
+    <span class="p-kicker">4 reports &middot; Oct 2024 &ndash; Mar 2026 &middot; Newest first</span>
+    <div id="content"></div>
+    <noscript><p>This demo portal renders its sample data with JavaScript — please enable it.</p></noscript>
+  </main>
+</div>
+<footer class="p-foot mono">Demo portal &middot; Fabmaster Maintenance Program &middot; Concept &middot; Sample data</footer>
+<script src="data.js"></script>
+<script src="portal.js"></script>
+<script>
+  (function () {
+    // The kicker promises "Newest first" — sort explicitly rather than
+    // trusting the array order in data.js. Dates are ISO yyyy-mm-dd
+    // strings, so a plain string compare sorts chronologically.
+    var reports = PORTAL.reports.slice().sort(function (a, b) {
+      return b.date.localeCompare(a.date);
+    });
+
+    var html = reports.map(function (r) {
+      var highlights = r.highlights.map(function (h) {
+        return '<li>' + h + '</li>';
+      }).join('');
+      return '<div class="p-card">' +
+        '<span class="meta">' + r.id + ' &middot; ' + formatDate(r.date) + ' &middot; ' + r.crew + '</span>' +
+        '<h2>' + r.title + '</h2>' +
+        '<span class="meta">' + r.assetsInspected + ' assets inspected &middot; ' + r.findings + ' findings &middot; ' + r.correctedOnSite + ' corrected on site</span>' +
+        '<p>' + r.summary + '</p>' +
+        '<ul>' + highlights + '</ul>' +
+        '<div class="p-actions">' +
+          '<button class="btn btn-line" type="button" data-demo="Demo portal — report PDFs aren\'t included in this concept.">Download PDF</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    html += '<div class="p-card">' +
+      '<p>Looking for older records? The Baseline Inspection from October 2024 is where the paper trail starts — that\'s the day the program kicked off, so there\'s nothing on file before it.</p>' +
+    '</div>';
+
+    document.getElementById('content').innerHTML = html;
+  })();
+</script>
+</body>
+</html>

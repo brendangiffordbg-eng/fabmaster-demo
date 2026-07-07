@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recommendations — Fabmaster Customer Portal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portal.css">
+<style>
+  .rec-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+  .rec-meta a{text-decoration:none;}
+  .p-card h2{margin-top:2px;}
+</style>
+</head>
+<body>
+<header class="p-top">
+  <div class="p-brand"><img src="../images/Fabmaster-Logo-New.jpg" alt="Fabmaster Welding"><span class="mono">portal.fabmaster.ca</span></div>
+  <div class="p-user"><span class="p-cust">Maple Creek Grain Ltd.</span><a class="p-signout" href="index.html">Sign out</a></div>
+</header>
+<div class="p-shell">
+  <nav class="p-nav" aria-label="Portal sections">
+    <a href="assets.html">My Assets</a>
+    <a href="reports.html">Inspection Reports</a>
+    <a href="schedule.html">Upcoming PMIs</a>
+    <a class="on" href="recommendations.html">Recommendations</a>
+    <a href="documents.html">Documents</a>
+    <a class="p-back" href="../index.html">&larr; Program page</a>
+  </nav>
+  <main class="p-main">
+    <h1>Recommendations</h1>
+    <span class="p-kicker">2 open &middot; 1 planned &middot; 1 monitoring &middot; 1 completed</span>
+    <div id="content"></div>
+    <noscript><p>This demo portal renders its sample data with JavaScript — please enable it.</p></noscript>
+  </main>
+</div>
+<footer class="p-foot mono">Demo portal &middot; Fabmaster Maintenance Program &middot; Concept &middot; Sample data</footer>
+<script src="data.js"></script>
+<script src="portal.js"></script>
+<script>
+  // Render one card per recommendation, straight from the PORTAL data.
+  (function () {
+    var STUB = 'Demo portal — quote approvals go through Ryan in this concept.';
+
+    function statusPill(rec) {
+      if (rec.status === 'open') return pill('overdue', 'Open');
+      if (rec.status === 'planned') return pill('due', 'Planned');
+      if (rec.status === 'monitor') return pill('neutral', 'Monitoring');
+      if (rec.status === 'completed') {
+        return pill('ok', rec.completed ? 'Completed ' + formatDate(rec.completed) : 'Completed');
+      }
+      return pill('neutral', rec.status);
+    }
+
+    function sevLabel(sev) {
+      return sev.charAt(0).toUpperCase() + sev.slice(1);
+    }
+
+    function card(rec) {
+      var callout = (rec.status === 'open' && rec.severity === 'high') ? ' p-callout' : '';
+      var asset = assetById(rec.asset);
+
+      var html = '<div class="p-card' + callout + '" id="' + rec.id + '">';
+      html += '<div class="rec-meta">';
+      html += '<span class="sev ' + rec.severity + '">' + sevLabel(rec.severity) + '</span>';
+      html += statusPill(rec);
+      html += '<a href="assets.html" title="' + (asset ? asset.name : rec.asset) + ' — see My Assets"><span class="asset-id">' + rec.asset + '</span></a>';
+      html += '</div>';
+      html += '<h2>' + rec.title + '</h2>';
+      html += '<p>' + rec.detail + '</p>';
+
+      var actions = '';
+      if (rec.amount) {
+        actions += '<span class="mono">Quote ' + rec.quote + ' &middot; ' + rec.amount + '</span>';
+      }
+      if (rec.action === 'Approve quote') {
+        actions += '<button type="button" class="btn btn-orange" data-demo="' + STUB + '">Approve quote</button>';
+      } else if (rec.action === 'View quote') {
+        actions += '<button type="button" class="btn btn-line" data-demo="' + STUB + '">View quote</button>';
+      }
+      if (actions) html += '<div class="p-actions">' + actions + '</div>';
+
+      html += '</div>';
+      return html;
+    }
+
+    document.getElementById('content').innerHTML =
+      PORTAL.recommendations.map(card).join('');
+  })();
+</script>
+</body>
+</html>

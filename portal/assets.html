@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Assets — Fabmaster Customer Portal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portal.css">
+</head>
+<body>
+<header class="p-top">
+  <div class="p-brand"><img src="../images/Fabmaster-Logo-New.jpg" alt="Fabmaster Welding"><span class="mono">portal.fabmaster.ca</span></div>
+  <div class="p-user"><span class="p-cust">Maple Creek Grain Ltd.</span><a class="p-signout" href="index.html">Sign out</a></div>
+</header>
+<div class="p-shell">
+  <nav class="p-nav" aria-label="Portal sections">
+    <a class="on" href="assets.html">My Assets</a>
+    <a href="reports.html">Inspection Reports</a>
+    <a href="schedule.html">Upcoming PMIs</a>
+    <a href="recommendations.html">Recommendations</a>
+    <a href="documents.html">Documents</a>
+    <a class="p-back" href="../index.html">&larr; Program page</a>
+  </nav>
+  <main class="p-main">
+    <h1>My Assets</h1>
+    <span class="p-kicker">Site: Main Elevator &middot; 12 tagged assets &middot; Semi-Annual Program</span>
+    <div id="content"></div>
+    <noscript><p>This demo portal renders its sample data with JavaScript — please enable it.</p></noscript>
+  </main>
+</div>
+<footer class="p-foot mono">Demo portal &middot; Fabmaster Maintenance Program &middot; Concept &middot; Sample data</footer>
+<script src="data.js"></script>
+<script src="portal.js"></script>
+<script>
+  (function () {
+    var content = document.getElementById('content');
+
+    var filters = [
+      { key: 'all', label: 'All' },
+      { key: 'ok', label: 'Compliant' },
+      { key: 'due', label: 'Due' },
+      { key: 'overdue', label: 'Action needed' }
+    ];
+
+    function countFor(key) {
+      if (key === 'all') return PORTAL.assets.length;
+      return PORTAL.assets.filter(function (a) { return a.status === key; }).length;
+    }
+
+    var filterHtml = '<div class="p-filters" role="group" aria-label="Filter assets by status">' +
+      filters.map(function (f) {
+        var on = f.key === 'all';
+        return '<button type="button" data-filter="' + f.key + '"' +
+          (on ? ' class="on"' : '') +
+          ' aria-pressed="' + on + '">' + f.label + ' (' + countFor(f.key) + ')</button>';
+      }).join('') +
+      '</div>';
+
+    var rowsHtml = PORTAL.assets.map(function (a) {
+      var detail =
+        '<div class="asset-detail" id="detail-' + a.id + '" style="display:none">' +
+          '<div><span class="lbl">Next PMI</span>' + a.nextPMI + '</div>' +
+          '<div><span class="lbl">Area</span>' + a.area + '</div>' +
+          '<div><span class="lbl">Baseline tagged</span>Oct 17, 2024</div>' +
+          '<div><span class="lbl">Note</span>' + a.note + '</div>' +
+          (a.openRec
+            ? '<div><span class="lbl">Recommendation</span><a href="recommendations.html#' + a.openRec + '">Open recommendation ' + a.openRec + ' &rarr;</a></div>'
+            : '') +
+          '<div><span class="lbl">Report</span><a href="#" data-demo="Demo portal — inspection PDFs aren\'t included in this concept.">Report PDF</a></div>' +
+        '</div>';
+
+      return '<div class="asset-row" data-status="' + a.status + '">' +
+        '<span class="asset-id">' + a.id + '</span>' +
+        '<div><b>' + a.name + '</b><small>' + a.type + ' &middot; ' + a.area + '</small></div>' +
+        '<span class="last">Last PMI: ' + formatDate(a.lastPMI) + '</span>' +
+        pill(a.status, a.statusLabel) +
+        '<button type="button" class="a-toggle" aria-expanded="false" aria-controls="detail-' + a.id +
+          '" aria-label="Show details for ' + a.id + '">+</button>' +
+        detail +
+      '</div>';
+    }).join('');
+
+    content.innerHTML = filterHtml + rowsHtml;
+
+    content.addEventListener('click', function (e) {
+      // Status filter buttons
+      var btn = e.target.closest('.p-filters button');
+      if (btn) {
+        var key = btn.getAttribute('data-filter');
+        content.querySelectorAll('.p-filters button').forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle('on', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        content.querySelectorAll('.asset-row').forEach(function (row) {
+          var show = key === 'all' || row.getAttribute('data-status') === key;
+          row.style.display = show ? '' : 'none';
+        });
+        return;
+      }
+
+      // Expand / collapse asset details
+      var tog = e.target.closest('.a-toggle');
+      if (tog) {
+        var open = tog.getAttribute('aria-expanded') === 'true';
+        var det = document.getElementById(tog.getAttribute('aria-controls'));
+        var id = tog.getAttribute('aria-controls').replace('detail-', '');
+        tog.setAttribute('aria-expanded', open ? 'false' : 'true');
+        tog.textContent = open ? '+' : '−';
+        tog.setAttribute('aria-label', (open ? 'Show' : 'Hide') + ' details for ' + id);
+        if (det) det.style.display = open ? 'none' : '';
+      }
+    });
+  })();
+</script>
+</body>
+</html>

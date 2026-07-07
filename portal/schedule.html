@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upcoming PMIs — Fabmaster Customer Portal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portal.css">
+<style>
+  /* tiny page-specific tweaks for the timeline entries */
+  .p-tl h3{font-size:20px;margin-top:3px;}
+  .p-tl .tl-detail{font-size:13.5px;color:var(--steel);margin-top:4px;max-width:640px;}
+  .p-tl .tl-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;}
+</style>
+</head>
+<body>
+<header class="p-top">
+  <div class="p-brand"><img src="../images/Fabmaster-Logo-New.jpg" alt="Fabmaster Welding"><span class="mono">portal.fabmaster.ca</span></div>
+  <div class="p-user"><span class="p-cust">Maple Creek Grain Ltd.</span><a class="p-signout" href="index.html">Sign out</a></div>
+</header>
+<div class="p-shell">
+  <nav class="p-nav" aria-label="Portal sections">
+    <a href="assets.html">My Assets</a>
+    <a href="reports.html">Inspection Reports</a>
+    <a class="on" href="schedule.html">Upcoming PMIs</a>
+    <a href="recommendations.html">Recommendations</a>
+    <a href="documents.html">Documents</a>
+    <a class="p-back" href="../index.html">&larr; Program page</a>
+  </nav>
+  <main class="p-main">
+    <h1>Upcoming PMIs</h1>
+    <span class="p-kicker">Next visit: Aug 18, 2026 &middot; 1 item overdue</span>
+    <div id="content"></div>
+    <noscript><p>This demo portal renders its sample data with JavaScript — please enable it.</p></noscript>
+  </main>
+</div>
+<footer class="p-foot mono">Demo portal &middot; Fabmaster Maintenance Program &middot; Concept &middot; Sample data</footer>
+<script src="data.js"></script>
+<script src="portal.js"></script>
+<script>
+  (function () {
+    var PILL = {
+      confirmed: { cls: 'ok', label: 'Confirmed' },
+      proposed:  { cls: 'due', label: 'Proposed' },
+      planned:   { cls: 'neutral', label: 'Planned' },
+      tentative: { cls: 'neutral', label: 'Tentative' }
+    };
+
+    function chips(assets) {
+      if (assets === 'all') {
+        return '<span class="asset-id">ALL ' + PORTAL.assets.length + ' ASSETS</span>';
+      }
+      return assets.map(function (id) {
+        return '<span class="asset-id">' + id + '</span>';
+      }).join('');
+    }
+
+    var overdue = PORTAL.pmis.filter(function (p) { return p.status === 'overdue'; });
+    var upcoming = PORTAL.pmis.filter(function (p) { return p.status !== 'overdue'; });
+
+    var html = '';
+
+    // Overdue callouts first — they need a decision, not a calendar slot.
+    html += overdue.map(function (o) {
+      var asset = o.assets === 'all' ? null : assetById(o.assets[0]);
+      var rec = asset ? asset.openRec : null;
+      return (
+        '<div class="p-card p-callout">' +
+          '<span class="meta">Overdue</span>' +
+          '<h2>' + o.title + '</h2>' +
+          '<p>' + o.detail + '</p>' +
+          '<div class="p-actions">' +
+            (rec ? '<a class="btn btn-orange" href="recommendations.html#' + rec + '">View recommendation ' + rec + ' &rarr;</a>' : '') +
+            chips(o.assets) +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    // Timeline of everything on the books.
+    html += '<div class="p-timeline">' + upcoming.map(function (p) {
+      var pl = PILL[p.status] || { cls: 'neutral', label: p.status };
+      return (
+        '<div class="p-tl ' + p.status + '">' +
+          '<span class="when">' + p.when + '</span> ' + pill(pl.cls, pl.label) +
+          '<h3>' + p.title + '</h3>' +
+          '<p class="tl-detail">' + p.detail + '</p>' +
+          '<div class="tl-chips">' + chips(p.assets) + '</div>' +
+        '</div>'
+      );
+    }).join('') + '</div>';
+
+    // One-liner for reschedules.
+    html += '<div class="p-card"><p>Need to move a date? Call or text ' + PORTAL.customer.rep + '.</p></div>';
+
+    document.getElementById('content').innerHTML = html;
+  })();
+</script>
+</body>
+</html>
