@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspection Report — Fabmaster Customer Portal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="report.css">
+</head>
+<body>
+
+<div class="doc-toolbar" role="toolbar" aria-label="Report actions">
+  <a class="tb-back" href="reports.html">&larr; Back to reports</a>
+  <div class="tb-actions">
+    <span class="tb-hint mono">Sample document &middot; choose &ldquo;Save as PDF&rdquo; in the print dialog</span>
+    <button class="btn btn-orange" id="printBtn" type="button">Save as PDF / Print</button>
+  </div>
+</div>
+
+<main class="doc-wrap">
+  <article class="doc" id="doc" aria-label="Inspection report">
+    <noscript><p style="text-align:center;padding:40px">This report renders from sample data with JavaScript. Please enable it, or <a href="reports.html">return to the portal</a>.</p></noscript>
+  </article>
+</main>
+
+<script src="data.js"></script>
+<script src="portal.js"></script>
+<script>
+  (function () {
+    var doc = document.getElementById('doc');
+
+    // ----- which report? -----
+    var params = new URLSearchParams(window.location.search);
+    var wantId = params.get('id');
+    var highlightAsset = params.get('asset');
+
+    var byDateDesc = PORTAL.reports.slice().sort(function (a, b) {
+      return b.date.localeCompare(a.date);
+    });
+    var byDateAsc = PORTAL.reports.slice().sort(function (a, b) {
+      return a.date.localeCompare(b.date);
+    });
+
+    var report = wantId
+      ? PORTAL.reports.filter(function (r) { return r.id === wantId; })[0]
+      : byDateDesc[0];
+
+    // ----- report not found -----
+    if (!report) {
+      doc.className = 'rp-missing';
+      doc.innerHTML =
+        '<h1>Report not found</h1>' +
+        '<p>No report matches &ldquo;' + escapeHtml(wantId || '') + '&rdquo; in this sample account.</p>' +
+        '<p style="margin-top:14px"><a href="reports.html">&larr; Back to inspection reports</a></p>';
+      document.title = 'Report not found — Fabmaster Customer Portal';
+      return;
+    }
+
+    // ----- helpers -----
+    var SEV = {
+      fixed:  { cls: 'ok',       label: 'Fixed' },
+      low:    { cls: 'neutral',  label: 'Low' },
+      medium: { cls: 'due',      label: 'Medium' },
+      high:   { cls: 'overdue',  label: 'Action' }
+    };
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    }
+
+    // Next PMI = the next report on file after this one; for the most recent
+    // report there is none yet, so fall back to the upcoming confirmed visit.
+    function nextPmi() {
+      var idx = byDateAsc.findIndex(function (r) { return r.id === report.id; });
+      if (idx > -1 && idx < byDateAsc.length - 1) {
+        return formatDate(byDateAsc[idx + 1].date);
+      }
+      var confirmed = PORTAL.pmis.filter(function (p) { return p.status === 'confirmed'; })[0];
+      return confirmed ? confirmed.when : '—';
+    }
+
+    // Counts derived from the lines so the header and the table can never
+    // disagree, whatever the data says.
+    var lines = report.lines || [];
+    var findingsCount = lines.length;
+    var correctedCount = lines.filter(function (l) { return l.sev === 'fixed'; }).length;
+
+    var cust = PORTAL.customer;
+
+    // ----- findings rows -----
+    var rows = lines.map(function (l) {
+      var sev = SEV[l.sev] || SEV.low;
+      var hot = highlightAsset && l.asset === highlightAsset ? ' style="background:#FFF6F1"' : '';
+      return '<tr' + hot + '>' +
+        '<td>' + escapeHtml(l.finding) + '</td>' +
+        '<td class="asset">' + escapeHtml(l.asset) + '</td>' +
+        '<td>' + escapeHtml(l.action) + '</td>' +
+        '<td><span class="pill ' + sev.cls + '">' + sev.label + '</span></td>' +
+      '</tr>';
+    }).join('');
+
+    var highlights = (report.highlights || []).map(function (h) {
+      return '<li>' + escapeHtml(h) + '</li>';
+    }).join('');
+
+    // ----- render -----
+    doc.innerHTML =
+      '<span class="doc-stamp mono">SAMPLE</span>' +
+
+      '<div class="rp-head">' +
+        '<img src="../images/Fabmaster-Logo-New.jpg" alt="Fabmaster Welding">' +
+        '<div class="rp-id"><b>' + escapeHtml(report.id) + '</b>' + formatDate(report.date) + '<br>Ridgetown, Ontario</div>' +
+      '</div>' +
+
+      '<h1 class="rp-title">' + escapeHtml(report.title) + '</h1>' +
+      '<div class="rp-sub">Preventive Maintenance Inspection Report</div>' +
+
+      '<div class="rp-meta">' +
+        '<div><span class="lbl">Customer</span><span class="val">' + escapeHtml(cust.name) + '</span></div>' +
+        '<div><span class="lbl">Site</span><span class="val">' + escapeHtml(cust.site) + '</span></div>' +
+        '<div><span class="lbl">Program</span><span class="val">' + escapeHtml(cust.program) + '</span></div>' +
+        '<div><span class="lbl">Inspection date</span><span class="val">' + formatDate(report.date) + '<small>' + escapeHtml(report.crew) + '</small></span></div>' +
+      '</div>' +
+
+      '<h2 class="rp-h">Summary</h2>' +
+      '<p class="rp-summary">' + escapeHtml(report.summary) + '</p>' +
+
+      '<h2 class="rp-h">Findings</h2>' +
+      '<p class="rp-count">' + report.assetsInspected + ' assets inspected &middot; ' + findingsCount + ' findings &middot; ' + correctedCount + ' corrected on site</p>' +
+      '<table class="rp-table">' +
+        '<thead><tr>' +
+          '<th scope="col">Finding</th><th scope="col">Asset</th><th scope="col">Action</th><th scope="col">Severity</th>' +
+        '</tr></thead>' +
+        '<tbody>' + rows + '</tbody>' +
+      '</table>' +
+
+      (highlights ? '<h2 class="rp-h">Key items &amp; next steps</h2><ul class="rp-list">' + highlights + '</ul>' : '') +
+
+      '<div class="rp-sign">' +
+        '<div class="sig-name">Inspected by<b>' + escapeHtml(report.crew) + '</b></div>' +
+        '<div class="sig-next">NEXT PMI: ' + nextPmi().toUpperCase() + '</div>' +
+      '</div>' +
+
+      '<p class="rp-foot">Fabmaster Welding &middot; 37 Morgan St, Ridgetown ON N0P 2C0 &middot; CWB Certified &middot; admin@fabmaster.ca &middot; Sample data prepared for a concept demo</p>';
+
+    document.title = report.id + ' — Fabmaster Inspection Report';
+
+    document.getElementById('printBtn').addEventListener('click', function () {
+      window.print();
+    });
+  })();
+</script>
+</body>
+</html>

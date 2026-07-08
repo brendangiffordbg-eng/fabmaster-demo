@@ -49,12 +49,17 @@
 
     function docRow(doc) {
       var typeClass = doc.type === 'CSV' ? 'doc-type csv' : 'doc-type';
+      // Inspection-report files open the real printable report; everything
+      // else is honestly stubbed (those artifacts aren't built in the demo).
+      var action = doc.reportId
+        ? '<a class="doc-dl" href="report.html?id=' + encodeURIComponent(doc.reportId) + '">Open</a>'
+        : '<a class="doc-dl" href="#" data-demo="Demo portal — this file isn\'t included in the concept. Inspection reports open as printable PDFs.">Download</a>';
       return '<div class="doc-row">' +
         '<span class="' + typeClass + '">' + doc.type + '</span>' +
         '<b>' + doc.name + '</b>' +
         '<span class="mono">' + doc.date + '</span>' +
         '<span class="mono">' + doc.size + '</span>' +
-        '<a class="doc-dl" href="#" data-demo="Demo portal — file downloads aren\'t included in this concept.">Download</a>' +
+        action +
         '</div>';
     }
 

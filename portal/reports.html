@@ -55,7 +55,7 @@
         '<p>' + r.summary + '</p>' +
         '<ul>' + highlights + '</ul>' +
         '<div class="p-actions">' +
-          '<button class="btn btn-line" type="button" data-demo="Demo portal — report PDFs aren\'t included in this concept.">Download PDF</button>' +
+          '<a class="btn btn-line" href="report.html?id=' + encodeURIComponent(r.id) + '">View report</a>' +
         '</div>' +
       '</div>';
     }).join('');

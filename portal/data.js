@@ -28,11 +28,84 @@ const PORTAL = {
     { id: 'FM-0428', name: 'Loadout Gantry & Spout', type: 'Structure', area: 'Loadout', status: 'ok', statusLabel: 'Compliant', lastPMI: '2026-03-14', nextPMI: 'Aug 18, 2026', note: 'Spout liner wear noted — plan replacement within two seasons.', openRec: null },
   ],
 
+  // Each report carries an itemized `lines` list so the printable report
+  // page (report.html) can render a full findings table. line.sev is one of
+  // 'fixed' | 'low' | 'medium' | 'high'; the counts below are kept in sync
+  // with the lines (findings === lines.length, correctedOnSite === # 'fixed').
   reports: [
-    { id: 'RPT-2026-031', title: 'Spring 2026 Semi-Annual PMI', date: '2026-03-14', assetsInspected: 11, findings: 7, correctedOnSite: 3, crew: 'Fabmaster millwright crew (2)', summary: 'Full safety and wear inspection of all conveying and receiving equipment. Three minor items corrected on site; chain wear on FM-0418 flagged for post-harvest replacement.', highlights: ['FM-0418 drag chain at 60% wear — quote #1204 issued', 'FM-0419 belt tracking corrected on site', 'FM-0424 hanger bearing replaced on site', 'Vibration screening: all drives normal'] },
-    { id: 'RPT-2025-089', title: 'Fall 2025 Semi-Annual PMI', date: '2025-10-03', assetsInspected: 12, findings: 9, correctedOnSite: 4, crew: 'Fabmaster millwright crew (2)', summary: 'Pre-winter inspection including structural and fall-arrest review of both towers. Two tie-off anchors on Tower B failed recertification and were tagged out of service.', highlights: ['FM-0421 anchors failed recert — quote #1187 issued', 'Tower A anchors recertified to May 2027', 'Dryer pre-season service recommended for 2026'] },
-    { id: 'RPT-2025-027', title: 'Spring 2025 Semi-Annual PMI', date: '2025-03-21', assetsInspected: 12, findings: 11, correctedOnSite: 6, crew: 'Fabmaster millwright crew (3)', summary: 'First full spring cycle under the program. Guarding upgrades completed on both receiving legs; all findings closed before harvest.', highlights: ['Guard panels fabricated and installed on FM-0417 / FM-0419', 'Bin row A auger flighting repaired'] },
-    { id: 'RPT-2024-102', title: 'Baseline Inspection & Asset Tagging', date: '2024-10-17', assetsInspected: 12, findings: 14, correctedOnSite: 2, crew: 'Fabmaster millwright crew (3)', summary: 'Program onboarding: all 12 assets tagged FM-0417 through FM-0428, baseline condition documented with photos, and the inspection schedule established.', highlights: ['12 assets tagged and photographed', 'Baseline asset register issued'] },
+    {
+      id: 'RPT-2026-031', title: 'Spring 2026 Semi-Annual PMI', date: '2026-03-14',
+      assetsInspected: 11, findings: 7, correctedOnSite: 3, crew: 'Fabmaster millwright crew (2)',
+      summary: 'Full safety and wear inspection of all conveying and receiving equipment. Three minor items corrected on site; chain wear on FM-0418 flagged for post-harvest replacement.',
+      highlights: ['FM-0418 drag chain at 60% wear — quote #1204 issued', 'FM-0419 belt tracking corrected on site', 'FM-0424 hanger bearing replaced on site', 'Vibration screening: all drives normal'],
+      lines: [
+        { asset: 'FM-0419', finding: 'Belt tracking off-centre', action: 'Corrected on site', sev: 'fixed' },
+        { asset: 'FM-0424', finding: 'Hanger bearing worn — Bin Row A auger', action: 'Replaced on site', sev: 'fixed' },
+        { asset: 'FM-0420', finding: 'Distributor indexing sensor loose', action: 'Tightened & retested on site', sev: 'fixed' },
+        { asset: 'FM-0418', finding: 'Drag chain wear at 60%', action: 'Replace post-harvest · Quote #1204', sev: 'medium' },
+        { asset: 'FM-0422', finding: 'Head pulley lagging at 40%', action: 'Monitor — re-check at next PMI', sev: 'low' },
+        { asset: 'FM-0428', finding: 'Loadout spout liner wear', action: 'Plan replacement within two seasons', sev: 'low' },
+        { asset: 'FM-0426', finding: 'Dust collector filter differential rising', action: 'Filters serviced; monitor airflow', sev: 'low' },
+      ],
+    },
+    {
+      id: 'RPT-2025-089', title: 'Fall 2025 Semi-Annual PMI', date: '2025-10-03',
+      assetsInspected: 12, findings: 9, correctedOnSite: 4, crew: 'Fabmaster millwright crew (2)',
+      summary: 'Pre-winter inspection including structural and fall-arrest review of both towers. Two tie-off anchors on Tower B failed recertification and were tagged out of service.',
+      highlights: ['FM-0421 anchors failed recert — quote #1187 issued', 'Tower A anchors recertified to May 2027', 'Dryer pre-season service recommended for 2026'],
+      lines: [
+        { asset: 'FM-0421', finding: 'Two tie-off anchors failed recertification', action: 'Tagged out of service · Quote #1187', sev: 'high' },
+        { asset: 'FM-0427', finding: 'Tower A fall-arrest anchors due recert', action: 'Recertified on site to May 2027', sev: 'fixed' },
+        { asset: 'FM-0417', finding: 'Receiving leg belt tension low', action: 'Adjusted on site', sev: 'fixed' },
+        { asset: 'FM-0423', finding: 'West drag conveyor guard fastener missing', action: 'Replaced on site', sev: 'fixed' },
+        { asset: 'FM-0426', finding: 'Dust collection duct joint leaking', action: 'Sealed on site', sev: 'fixed' },
+        { asset: 'FM-0425', finding: 'Dryer burner service overdue', action: 'Pre-season service recommended for 2026', sev: 'medium' },
+        { asset: 'FM-0418', finding: 'Drag chain wear at ~50%', action: 'Monitor — re-check spring', sev: 'low' },
+        { asset: 'FM-0422', finding: 'Head pulley lagging wear beginning', action: 'Monitor', sev: 'low' },
+        { asset: 'FM-0428', finding: 'Loadout spout liner wear', action: 'Monitor', sev: 'low' },
+      ],
+    },
+    {
+      id: 'RPT-2025-027', title: 'Spring 2025 Semi-Annual PMI', date: '2025-03-21',
+      assetsInspected: 12, findings: 11, correctedOnSite: 6, crew: 'Fabmaster millwright crew (3)',
+      summary: 'First full spring cycle under the program. Guarding upgrades completed on both receiving legs; all findings closed before harvest.',
+      highlights: ['Guard panels fabricated and installed on FM-0417 / FM-0419', 'Bin row A auger flighting repaired'],
+      lines: [
+        { asset: 'FM-0417', finding: 'Receiving leg guard panel gap', action: 'Guard panel fabricated & installed', sev: 'fixed' },
+        { asset: 'FM-0419', finding: 'Receiving leg guard panel gap', action: 'Guard panel fabricated & installed', sev: 'fixed' },
+        { asset: 'FM-0424', finding: 'Bin Row A auger flighting worn', action: 'Flighting repaired', sev: 'fixed' },
+        { asset: 'FM-0420', finding: 'Distributor access cover loose', action: 'Refastened on site', sev: 'fixed' },
+        { asset: 'FM-0426', finding: 'Dust collection filters at end of life', action: 'Filters replaced on site', sev: 'fixed' },
+        { asset: 'FM-0422', finding: 'Shipping leg boot seal leaking dust', action: 'Reseated on site', sev: 'fixed' },
+        { asset: 'FM-0418', finding: 'Drag chain wear at ~40%', action: 'Monitor', sev: 'low' },
+        { asset: 'FM-0421', finding: 'Fall-arrest anchors due recert next cycle', action: 'Scheduled for fall recert', sev: 'medium' },
+        { asset: 'FM-0425', finding: 'Dryer moisture sensor drift', action: 'Recalibrated; monitor', sev: 'low' },
+        { asset: 'FM-0428', finding: 'Loadout gantry surface corrosion', action: 'Spot-treated; monitor', sev: 'low' },
+        { asset: 'FM-0427', finding: 'Tower A ladder rung wear', action: 'Logged; monitor', sev: 'low' },
+      ],
+    },
+    {
+      id: 'RPT-2024-102', title: 'Baseline Inspection & Asset Tagging', date: '2024-10-17',
+      assetsInspected: 12, findings: 14, correctedOnSite: 2, crew: 'Fabmaster millwright crew (3)',
+      summary: 'Program onboarding: all 12 assets tagged FM-0417 through FM-0428, baseline condition documented with photos, and the inspection schedule established.',
+      highlights: ['12 assets tagged and photographed', 'Baseline asset register issued'],
+      lines: [
+        { asset: 'FM-0417', finding: 'Baseline — guard gaps at receiving leg', action: 'Noted for spring guard upgrade', sev: 'low' },
+        { asset: 'FM-0418', finding: 'Baseline — drag chain ~30% wear', action: 'Baseline logged; monitor', sev: 'low' },
+        { asset: 'FM-0419', finding: 'Baseline — guard gaps at receiving leg', action: 'Noted for spring guard upgrade', sev: 'low' },
+        { asset: 'FM-0420', finding: 'Baseline — distributor indexing within spec', action: 'No action', sev: 'low' },
+        { asset: 'FM-0421', finding: 'Baseline — fall-arrest anchors present, recert due', action: 'Scheduled for recert', sev: 'medium' },
+        { asset: 'FM-0422', finding: 'Baseline — head pulley lagging fair', action: 'Monitor', sev: 'low' },
+        { asset: 'FM-0423', finding: 'Baseline — guard fastener missing', action: 'Replaced on site', sev: 'fixed' },
+        { asset: 'FM-0424', finding: 'Baseline — auger flighting wear', action: 'Noted for spring repair', sev: 'low' },
+        { asset: 'FM-0425', finding: 'Baseline — dryer service history unknown', action: 'Pre-season service recommended', sev: 'medium' },
+        { asset: 'FM-0426', finding: 'Baseline — dust system functional, filters dirty', action: 'Filters serviced on site', sev: 'fixed' },
+        { asset: 'FM-0427', finding: 'Baseline — Tower A ladders & cage sound', action: 'No action', sev: 'low' },
+        { asset: 'FM-0428', finding: 'Baseline — loadout spout liner wear', action: 'Monitor', sev: 'low' },
+        { asset: '—', finding: 'Baseline — no asset register on file', action: 'Register created & issued', sev: 'low' },
+        { asset: '—', finding: 'Baseline — inspection schedule not established', action: 'Program schedule set', sev: 'low' },
+      ],
+    },
   ],
 
   pmis: [
@@ -52,9 +125,9 @@ const PORTAL = {
   ],
 
   documents: [
-    { name: 'Spring 2026 PMI Report', category: 'Inspection reports', date: '2026-03-14', type: 'PDF', size: '4.2 MB' },
-    { name: 'Fall 2025 PMI Report', category: 'Inspection reports', date: '2025-10-03', type: 'PDF', size: '5.1 MB' },
-    { name: 'Spring 2025 PMI Report', category: 'Inspection reports', date: '2025-03-21', type: 'PDF', size: '4.8 MB' },
+    { name: 'Spring 2026 PMI Report', category: 'Inspection reports', date: '2026-03-14', type: 'PDF', size: '4.2 MB', reportId: 'RPT-2026-031' },
+    { name: 'Fall 2025 PMI Report', category: 'Inspection reports', date: '2025-10-03', type: 'PDF', size: '5.1 MB', reportId: 'RPT-2025-089' },
+    { name: 'Spring 2025 PMI Report', category: 'Inspection reports', date: '2025-03-21', type: 'PDF', size: '4.8 MB', reportId: 'RPT-2025-027' },
     { name: 'Baseline Asset Register', category: 'Program records', date: '2024-10-17', type: 'PDF', size: '2.9 MB' },
     { name: 'Asset Register (spreadsheet)', category: 'Program records', date: '2026-03-14', type: 'CSV', size: '18 KB' },
     { name: 'Fall-Arrest Anchor Certificates — Tower A', category: 'Certificates', date: '2025-10-03', type: 'PDF', size: '1.1 MB' },

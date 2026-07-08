@@ -51,6 +51,16 @@
       return PORTAL.assets.filter(function (a) { return a.status === key; }).length;
     }
 
+    // The report from this asset's most recent PMI (exact date match), else
+    // the newest report on or before it, else the newest on file.
+    function reportForAsset(a) {
+      var sorted = PORTAL.reports.slice().sort(function (x, y) { return y.date.localeCompare(x.date); });
+      var exact = sorted.filter(function (r) { return r.date === a.lastPMI; })[0];
+      if (exact) return exact;
+      var onOrBefore = sorted.filter(function (r) { return r.date <= a.lastPMI; })[0];
+      return onOrBefore || sorted[0];
+    }
+
     var filterHtml = '<div class="p-filters" role="group" aria-label="Filter assets by status">' +
       filters.map(function (f) {
         var on = f.key === 'all';
@@ -61,6 +71,7 @@
       '</div>';
 
     var rowsHtml = PORTAL.assets.map(function (a) {
+      var rep = reportForAsset(a);
       var detail =
         '<div class="asset-detail" id="detail-' + a.id + '" style="display:none">' +
           '<div><span class="lbl">Next PMI</span>' + a.nextPMI + '</div>' +
@@ -70,7 +81,7 @@
           (a.openRec
             ? '<div><span class="lbl">Recommendation</span><a href="recommendations.html#' + a.openRec + '">Open recommendation ' + a.openRec + ' &rarr;</a></div>'
             : '') +
-          '<div><span class="lbl">Report</span><a href="#" data-demo="Demo portal — inspection PDFs aren\'t included in this concept.">Report PDF</a></div>' +
+          '<div><span class="lbl">Latest report</span><a href="report.html?id=' + encodeURIComponent(rep.id) + '&asset=' + encodeURIComponent(a.id) + '">' + rep.id + ' &rarr;</a></div>' +
         '</div>';
 
       return '<div class="asset-row" data-status="' + a.status + '">' +
