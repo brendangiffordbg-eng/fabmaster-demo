@@ -1,8 +1,8 @@
 # Fabmaster Maintenance Program — Demo Site
 
-Single-page concept site pitching a preventive-maintenance subscription program for
+Single-page concept site for a preventive-maintenance subscription program for
 grain, feed & fertilizer operations, plus an interactive customer-portal demo.
-Prepared for Ryan at [Fabmaster Welding](https://fabmaster.ca) (Ridgetown, Ontario).
+A business concept for [Fabmaster Welding](https://fabmaster.ca) (Ridgetown, Ontario).
 
 ## Structure
 

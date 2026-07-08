@@ -28,7 +28,7 @@ a{color:inherit;}
 .bar .mono{color:#9AA3AC;font-size:12px;}
 .bar a{text-decoration:none;color:#fff;}
 .bar a:hover{color:var(--orange);}
-.bar .ryan{color:var(--tag);}
+.bar .contact-lead{color:var(--tag);}
 
 /* ---------- hero ---------- */
 .hero{position:relative;color:#fff;background:var(--charcoal);overflow:hidden;}
@@ -134,8 +134,8 @@ footer{background:var(--charcoal);color:#fff;padding:64px 0 40px;}
 footer h3{font-size:24px;margin-bottom:10px;}
 footer p,footer a{font-size:15px;color:#C6CCD1;text-decoration:none;}
 footer a:hover{color:var(--orange);}
-.ryan-line{font-family:'Barlow Condensed',sans-serif;font-size:22px;color:#fff;text-transform:uppercase;letter-spacing:.03em;}
-.ryan-line a{font-size:22px;color:var(--orange);font-weight:600;}
+.foot-cta{font-family:'Barlow Condensed',sans-serif;font-size:22px;color:#fff;text-transform:uppercase;letter-spacing:.03em;}
+.foot-cta a{font-size:22px;color:var(--orange);font-weight:600;}
 .foot-logo{background:#fff;display:inline-block;padding:8px 12px;border-radius:4px;margin-bottom:16px;}
 .foot-logo img{height:40px;width:auto;}
 .fine{margin-top:44px;padding-top:18px;border-top:1px solid #2B333C;font-size:12.5px;color:#7C858E;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}

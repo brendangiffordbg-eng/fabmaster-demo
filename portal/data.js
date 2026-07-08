@@ -10,7 +10,7 @@ const PORTAL = {
     site: 'Main Elevator',
     program: 'Pro Maintenance Plan',
     memberSince: 'October 2024',
-    rep: 'Ryan — 519.437.5297',
+    rep: 'Fabmaster at 519.437.5297',
   },
 
   assets: [
@@ -111,7 +111,7 @@ const PORTAL = {
   pmis: [
     { when: 'Overdue', title: 'Anchor replacement & recert — Tower B', assets: ['FM-0421'], status: 'overdue', detail: 'Two tie-off anchors tagged out of service Oct 2025. Work is quoted (#1187) and awaiting approval — recommended before fall harvest.' },
     { when: 'Aug 18, 2026', title: 'Semi-Annual PMI — pre-harvest', assets: 'all', status: 'confirmed', detail: 'Full inspection of all 12 tagged assets, including vibration analysis on critical drives. Crew on site approx. two days.' },
-    { when: 'Sep 2, 2026', title: 'Dryer pre-season service', assets: ['FM-0425'], status: 'proposed', detail: 'Burner, fans and safety-circuit service before the fall drying season. Proposed date — confirm with Ryan.' },
+    { when: 'Sep 2, 2026', title: 'Dryer pre-season service', assets: ['FM-0425'], status: 'proposed', detail: 'Burner, fans and safety-circuit service before the fall drying season. Proposed date — confirm with the shop.' },
     { when: 'Nov 2026', title: 'Drag chain replacement — East conveyor', assets: ['FM-0418'], status: 'planned', detail: 'Chain and sprocket replacement scheduled for the post-harvest window, per quote #1204.' },
     { when: 'Mar 2027', title: 'Semi-Annual PMI — spring', assets: 'all', status: 'tentative', detail: 'Spring cycle of the Pro Maintenance Plan. Date confirmed in February.' },
   ],
